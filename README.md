@@ -2,7 +2,7 @@
 
 [![Streamlit App](https://static.streamlit.io/badge/streamlit_badge_black_white.svg)](https://solarvolt.streamlit.app)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![Python: 3.10+](https://img.shields.io/badge/Python-3.10+-brightgreen.svg)](https://python.org)
+[![Python: 3.12+](https://img.shields.io/badge/Python-3.12+-brightgreen.svg)](https://python.org)
 
 B2B industrial engineering platform designed to mathematically size rooftop solar photovoltaic plants, simulate daytime self-consumption vs surplus compensation, and generate bankable financial models (IRR, NPV, Payback) and blind tender RFPs under **Spanish Royal Decree 244/2019**.
 
