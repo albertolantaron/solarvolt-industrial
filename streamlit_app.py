@@ -31,8 +31,8 @@ if stripe_key and stripe:
 ADMIN_EMAILS = ["alberto.lantaron@gmail.com", "albertterre.lantaron@gmail.com"]
 
 # 👉 TUS DOS ENLACES DE PAGO DE STRIPE:
-URL_STRIPE_49 = "https://buy.stripe.com/TU_ENLACE_SOLAR_49"
-URL_STRIPE_149 = "https://buy.stripe.com/TU_ENLACE_SOLAR_149"
+URL_STRIPE_49 = "https://buy.stripe.com/9B63cxeFUeTc2hB9Ay0Ny06"
+URL_STRIPE_149 = "https://buy.stripe.com/7sYdRb55k6mGe0j1420Ny07"
 
 # --- BASE DE DATOS OFICIAL PVGIS COMISIÓN EUROPEA (kWh/kWp/año) ---
 RADIACION_PROVINCIAS = {
@@ -100,6 +100,7 @@ st.markdown("""
     .stat-amber { background: #fef3c7; color: #b45309; border: 1px solid #fde68a; }
     .stat-success { background: #dcfce7; color: #15803d; border: 1px solid #4ade80; }
     .stat-purple { background: #f3e8ff; color: #7e22ce; border: 1px solid #d8b4fe; }
+    .stat-danger { background: #fee2e2; color: #b91c1c; border: 1px solid #f87171; }
     
     .big-value {
         font-family: 'JetBrains Mono', monospace;
@@ -116,12 +117,12 @@ with c_top2:
     idioma = st.radio("Language / Idioma:", ["🇪🇸 Español", "🇬🇧 English"], horizontal=True, label_visibility="collapsed")
 es_espanol = "Español" in idioma
 
-# --- DICCIONARIO BILINGÜE CENTRALIZADO ---
+# --- DICCIONARIO BILINGÜE COMPLETO ---
 TEXTOS = {
     "badge_top": "INGENIERÍA SOLAR INDUSTRIAL RD 244/2019" if es_espanol else "INDUSTRIAL SOLAR PV SIZING RD 244/2019",
     "titulo": "☀️ SolarVolt Industrial | Solar PV Workbench",
     "subtitulo": "Dimensionamiento Fotovoltaico en Cubierta Industrial, Balance Horario y Rentabilidad (TIR, VAN, Payback)" if es_espanol else "Rooftop Solar PV Capacity Sizing, Energy Balance & Bankable Yield Model (IRR, NPV, Payback)",
-    "explicacion_rapida": "Introduce la superficie de tu tejado y consumo: el algoritmo dimensiona la planta solar óptima (kWp e inversor), calcula el ahorro con compensación de excedentes (RD 244/2019) y genera el pliego para licitar a instaladores." if es_espanol else "Enter your usable roof area and electricity consumption: the algorithm sizes the optimal PV plant (kWp & inverters), models net savings with surplus feed-in (RD 244/2019), and generates a blind tender dossier.",
+    "explicacion_rapida": "Introduce la superficie de tu tejado y consumo: el algoritmo dimensiona la planta solar óptima (kWp e inversor), calcula el ahorro con compensación de excedentes (RD 244/2019) y genera el pliego para forzar a 3 instaladores a competir en precio." if es_espanol else "Enter your usable roof area and electricity consumption: the algorithm sizes the optimal PV plant (kWp & inverters), models net savings with surplus feed-in (RD 244/2019), and generates a blind tender dossier.",
     "cargar_caso": "📂 Cargar Nave Industrial Tipo:" if es_espanol else "📂 Load Industrial Facility Preset:",
     "sec1_titulo": "1. Ubicación y Geometría de Cubierta" if es_espanol else "1. Location & Rooftop Geometry",
     "cups_lbl": "Código CUPS / Supply Point ID:" if es_espanol else "Supply Point ID Code (CUPS):",
@@ -153,15 +154,15 @@ TEXTOS = {
     "dossier_status": "Estado del Proyecto Solar:" if es_espanol else "Solar Project Status:",
     "proj_savings": "Ahorro Anual Proyectado" if es_espanol else "Projected Annual Savings",
     "audit_status": "DIMENSIONAMIENTO VÁLIDO" if es_espanol else "COMPLIANT SIZING",
-    "audit_ready": "Apto para tramitación" if es_espanol else "Ready for filing",
+    "audit_ready": "Apto para licitación y banca" if es_espanol else "Ready for bank filing",
     "preview_lbl": "Vista Previa del Documento Oficial (Modo Teaser Anti-Copia Activo):" if es_espanol else "Official Document Preview (Anti-Copy Teaser Mode):",
     "warn_unlicensed": "🔒 VISTA PREVIA PROTEGIDA: Selecciona tu modalidad de acceso:" if es_espanol else "🔒 PREVIEW PROTECTED: Choose your access license:",
-    "plan_pyme_name": "PLAN NAVE INDIVIDUAL" if es_espanol else "SINGLE ROOF LICENSE",
-    "plan_pyme_desc": "Proyecto bancable para <strong>1 Nave Industrial</strong><br>Borradores y revisiones ilimitadas" if es_espanol else "Bankable project for <strong>1 Industrial Roof</strong><br>Unlimited revisions for your facility",
-    "plan_pyme_btn": "Adquirir Proyecto Nave (49,00 €)" if es_espanol else "Unlock Single Roof License (49.00 €)",
+    "plan_pyme_name": "BONO EMPRESA (2 CUBIERTAS)" if es_espanol else "BUSINESS PASS (2 ROOFS)",
+    "plan_pyme_desc": "Proyecto bancable para <strong>hasta 2 Naves (CUPS)</strong><br>Borradores y revisiones ilimitadas" if es_espanol else "Bankable project for <strong>up to 2 Roofs (CUPS)</strong><br>Unlimited revisions for your facilities",
+    "plan_pyme_btn": "Comprar Bono 2 Naves (49,00 €)" if es_espanol else "Unlock 2-Roofs Pass (49.00 €)",
     "plan_pro_name": "PLAN INSTALADOR / EPC B2B" if es_espanol else "UNLIMITED SOLAR EPC CONTRACTOR",
-    "plan_pro_desc": "<strong>PROYECTOS ILIMITADOS</strong> de por vida<br>Para ingenierías, instaladores y consultores" if es_espanol else "<strong>UNLIMITED PROJECTS</strong> lifetime access<br>For EPC contractors & solar consultants",
-    "plan_pro_btn": "Adquirir Plan Ilimitado (149,00 €)" if es_espanol else "Unlock Unlimited Plan (149.00 €)",
+    "plan_pro_desc": "<strong>PROYECTOS E INFINITOS CUPS</strong> de por vida<br>Para ingenierías, instaladores y consultores" if es_espanol else "<strong>UNLIMITED PROJECTS & CUPS</strong> lifetime<br>For EPC contractors & solar consultants",
+    "plan_pro_btn": "Comprar Plan Ilimitado (149,00 €)" if es_espanol else "Unlock Unlimited Plan (149.00 €)",
     "btn_print_html": "🖨️ Imprimir / Guardar Memoria Solar en PDF" if es_espanol else "🖨️ Print / Save Solar Technical Dossier (PDF)",
     "print_hint": "Destino en opciones de impresión: Guardar como PDF." if es_espanol else "Printer destination: Save as PDF.",
     "doc_p1_title": "MEMORIA TÉCNICA DE DISEÑO FOTOVOLTAICO INDUSTRIAL" if es_espanol else "PRELIMINARY INDUSTRIAL SOLAR PV DESIGN MEMORANDUM",
@@ -181,6 +182,7 @@ TEXTOS = {
     "doc_ahorro_lbl": "- Ahorro Económico Neto Anual:" if es_espanol else "- Net Annual Financial Savings:",
     "doc_payback_lbl": "- Plazo de Amortización Simple (Payback):" if es_espanol else "- Simple Payback Period:",
     "doc_tir_lbl": "- Tasa Interna de Retorno (TIR a 25 años):" if es_espanol else "- Internal Rate of Return (25-year IRR):",
+    "doc_co2_lbl": "- Emisiones de CO2 Evitadas a la Atmósfera:" if es_espanol else "- Avoided Carbon Emissions (CO2 Scope 2):",
     "doc_p2_title": "PLIEGO DE ESPECIFICACIONES TÉCNICAS (EQUIPOS PRINCIPALES)" if es_espanol else "MAIN EQUIPMENT TECHNICAL SPECIFICATION SHEET",
     "doc_p2_sub": "REQUISITOS MÍNIMOS OBLIGATORIOS PARA CONTRATISTAS E INSTALADORES" if es_espanol else "MINIMUM MANDATORY REQUIREMENTS FOR EPC CONTRACTORS",
     "doc_p2_spec1": "<strong>1. Módulos Fotovoltaicos:</strong> Silicio monocristalino con tecnología PERC o TopCon de alta eficiencia (≥ 21,5%), tolerancia positiva (+0/+5W), garantía de producto mínima de 12 años y garantía de producción no inferior al 84,8% a 25 años." if es_espanol else "<strong>1. PV Modules:</strong> High-efficiency monocrystalline silicon with PERC/TopCon technology (≥ 21.5%), positive power tolerance (+0/+5W), minimum 12-year product warranty, and linear output warranty ≥ 84.8% at 25 years.",
@@ -208,11 +210,13 @@ PRESETS_NAVES = {
     }
 }
 
-# --- GESTIÓN DE LICENCIAS STRIPE ---
+# --- GESTIÓN DE LICENCIAS STRIPE (HASTA 2 CUPS POR 49€ O ILIMITADO POR 149€) ---
 if "tipo_licencia" not in st.session_state:
     st.session_state.tipo_licencia = "ninguna"
 if "cliente_email" not in st.session_state:
     st.session_state.cliente_email = ""
+if "cups_registrados" not in st.session_state:
+    st.session_state.cups_registrados = []
 
 session_id_param = st.query_params.get("session_id")
 if session_id_param and st.session_state.tipo_licencia == "ninguna":
@@ -225,8 +229,8 @@ if session_id_param and st.session_state.tipo_licencia == "ninguna":
                     st.session_state.tipo_licencia = "consultor"
                     msg_toast = "🎉 ¡Plan Instalador Ilimitado Activado!" if es_espanol else "🎉 Unlimited Solar Contractor License Activated!"
                 else:
-                    st.session_state.tipo_licencia = "individual"
-                    msg_toast = "🎉 ¡Proyecto Solar Activado con Éxito!" if es_espanol else "🎉 Solar Roof Project Unlocked!"
+                    st.session_state.tipo_licencia = "pyme"
+                    msg_toast = "🎉 ¡Bono Empresa (2 Naves) Activado!" if es_espanol else "🎉 2-Roofs Business License Activated!"
                 
                 st.session_state.cliente_email = sesion.customer_details.email if sesion.customer_details else "Verified Customer"
                 st.balloons()
@@ -253,10 +257,10 @@ def comprobar_email_stripe(email_test):
                     if cargo.amount >= 10000:
                         return True, "consultor", "Active Unlimited Solar License (149€)" if not es_espanol else "Licencia Instalador Ilimitada Activa (149€)"
                     elif cargo.amount >= 3500:
-                        tipo_encontrado = "individual"
+                        tipo_encontrado = "pyme"
         
-        if tipo_encontrado == "individual":
-            return True, "individual", "Active Solar Roof License (49€)" if not es_espanol else "Licencia Proyecto Solar Activa (49€)"
+        if tipo_encontrado == "pyme":
+            return True, "pyme", "Active 2-Roofs Solar License (49€)" if not es_espanol else "Licencia Empresa Activa (Bono 2 Naves - 49€)"
             
         return False, "ninguna", "No completed payments found." if not es_espanol else "No constan pagos completados."
     except Exception as e:
@@ -301,10 +305,11 @@ with col_preset:
     
     if st.session_state.tipo_licencia == "consultor" or es_admin:
         st.markdown(f'<span class="stat-badge stat-purple">👑 PLAN INSTALADOR ILIMITADO ({st.session_state.cliente_email})</span>' if es_espanol else f'<span class="stat-badge stat-purple">👑 UNLIMITED SOLAR CONTRACTOR ({st.session_state.cliente_email})</span>', unsafe_allow_html=True)
-    elif st.session_state.tipo_licencia == "individual":
-        st.markdown(f'<span class="stat-badge stat-success">🟢 PROYECTO NAVE ACTIVO</span>' if es_espanol else f'<span class="stat-badge stat-success">🟢 ACTIVE ROOF PROJECT</span>', unsafe_allow_html=True)
+    elif st.session_state.tipo_licencia == "pyme":
+        n_cups = len(st.session_state.cups_registrados)
+        st.markdown(f'<span class="stat-badge stat-success">🟢 BONO 2 NAVES ({n_cups}/2 Usadas)</span>' if es_espanol else f'<span class="stat-badge stat-success">🟢 2-ROOFS PASS ({n_cups}/2 Used)</span>', unsafe_allow_html=True)
     else:
-        st.markdown(f'<span class="stat-badge stat-amber">🔒 MODO EVALUACIÓN</span>' if es_espanol else f'<span class="stat-badge stat-amber">🔒 EVALUATION MODE</span>', unsafe_allow_html=True)
+        st.markdown(f'<span class="stat-badge stat-danger">🔒 MODO EVALUACIÓN</span>' if es_espanol else f'<span class="stat-badge stat-danger">🔒 EVALUATION MODE</span>', unsafe_allow_html=True)
         with st.expander("¿Ya pagaste? Valida tu email" if es_espanol else "Already paid? Validate email"):
             mail_val = st.text_input("Email Stripe:")
             if st.button("Validar Licencia" if es_espanol else "Validate License"):
@@ -326,7 +331,6 @@ with col_in:
     
     cups_val = st.text_input(TEXTOS['cups_lbl'], key="cups_solar").strip().upper()
     
-    # Selector de provincia con búsqueda
     provincias_list = list(RADIACION_PROVINCIAS.keys())
     idx_prov = provincias_list.index("Madrid") if "Madrid" in provincias_list else 0
     provincia = st.selectbox(TEXTOS['prov_lbl'], provincias_list, index=idx_prov)
@@ -343,19 +347,19 @@ with col_in:
     precio_exc = st.number_input(TEXTOS['pexc_lbl'], min_value=0.03, max_value=0.15, key="pexc_solar", step=0.005, format="%.3f")
     st.markdown('</div>', unsafe_allow_html=True)
 
-# --- MOTOR MATEMÁTICO FOTOVOLTAICO EN VIVO ---
-POTENCIA_MODULO_WP = 550.0  # Módulo Tier 1 industrial
-M2_POR_PANEL = 2.56         # Con pasillos de mantenimiento
-PERFORMANCE_RATIO = 0.80    # Pérdidas certificadas estándar
+# --- MOTOR MATEMÁTICO FOTOVOLTAICO RECALCULADO EN TIEMPO REAL ---
+POTENCIA_MODULO_WP = 550.0  # Módulo Tier 1 monocristalino TopCon
+M2_POR_PANEL = 2.56         # Con pasillos de mantenimiento perimetrales
+PERFORMANCE_RATIO = 0.80    # Pérdidas del sistema (cableado, suciedad, térmicas)
 
 num_paneles = int(sup_cubierta / M2_POR_PANEL)
 potencia_pico_kwp = round((num_paneles * POTENCIA_MODULO_WP) / 1000.0, 1)
 generacion_anual_kwh = round(potencia_pico_kwp * r_especifica * PERFORMANCE_RATIO, 0)
 
-# Inversor trifásico industrial (Relación DC/AC = 1.20)
+# Inversor trifásico industrial (Relación DC/AC = 1.20 estándar)
 potencia_inversor_kw = round(potencia_pico_kwp / 1.20, 1)
 
-# Balance horario industrial (72% autoconsumo directo)
+# Balance Autoconsumo vs Excedentes (en industria diurna típica, 72% autoconsumo directo)
 pct_autoconsumo = 0.72
 kwh_autoconsumo = round(min(consumo_anual_kwh, generacion_anual_kwh * pct_autoconsumo), 0)
 kwh_excedentes = round(max(0.0, generacion_anual_kwh - kwh_autoconsumo), 0)
@@ -369,8 +373,10 @@ ahorro_directo = kwh_autoconsumo * precio_red
 ingreso_excedentes = kwh_excedentes * precio_exc
 ahorro_anual_total = round(ahorro_directo + ingreso_excedentes, 2)
 
-# Payback y TIR
+# Payback, TIR y Toneladas de CO2 evitadas (Mix eléctrico español: ~0.26 kg CO2/kWh)
 payback_anios = round(capex_total / ahorro_anual_total, 1) if ahorro_anual_total > 0 else 0
+toneladas_co2 = round((generacion_anual_kwh * 0.26) / 1000.0, 1)
+
 flujos = [-capex_total] + [ahorro_anual_total] * 25
 try:
     tir = round(np.irr(flujos) * 100, 1)
@@ -378,7 +384,7 @@ except Exception:
     tir = round((ahorro_anual_total / capex_total) * 100 * 0.9, 1)
 
 with col_res:
-    # 4 MÉTRICAS CLAVE
+    # 4 GRANDES MÉTRICAS
     m1, m2, m3, m4 = st.columns(4)
     with m1:
         st.markdown(f"""
@@ -451,14 +457,36 @@ with col_res:
     st.plotly_chart(fig_fin, use_container_width=True)
     st.markdown('</div>', unsafe_allow_html=True)
 
-# --- EXPEDIENTE OFICIAL DE 3 PÁGINAS Y VENTA ---
+# --- REGLA DE 2 NAVES / CUPS POR LICENCIA ---
+tipo_lic = st.session_state.tipo_licencia
+cups_valido = False
+
+if tipo_lic == "consultor" or es_admin:
+    cups_valido = True
+elif tipo_lic == "pyme":
+    if cups_val in st.session_state.cups_registrados:
+        cups_valido = True
+    elif len(st.session_state.cups_registrados) < 2:
+        st.session_state.cups_registrados.append(cups_val)
+        cups_valido = True
+    else:
+        cups_valido = False
+else:
+    cups_valido = False
+
+# --- EXPEDIENTE OFICIAL DE 3 PÁGINAS (CON CANDADO EN LOS DATOS CRÍTICOS) ---
 st.markdown('<div class="metric-panel">', unsafe_allow_html=True)
 st.subheader(TEXTOS['sec2_title'])
 
-es_desbloqueado = st.session_state.tipo_licencia in ["individual", "consultor"] or es_admin
-
 def compilar_informe_solar_html(desbloqueado, en_espanol=True):
-    blur = "" if desbloqueado else "filter: blur(6px); user-select: none; pointer-events: none;"
+    # Candado visual para la versión sin pagar
+    candado_txt = "🔒 [BLOQUEADO]" if en_espanol else "🔒 [LOCKED]"
+    blur_style = "" if desbloqueado else "filter: blur(6px); user-select: none; pointer-events: none;"
+    
+    val_paneles_str = f"<strong>{num_paneles}</strong> {'módulos monocristalinos 550W Tier 1 TopCon' if en_espanol else 'monocrystalline Tier 1 TopCon modules'}" if desbloqueado else candado_txt
+    val_inv_str = f"<strong>{potencia_inversor_kw} kW</strong> (DC/AC: 1,20)" if desbloqueado else candado_txt
+    val_capex_str = f"<strong>{capex_total:,.2f} €</strong> (Ratio: {COSTE_WP} €/Wp)" if desbloqueado else candado_txt
+    val_tir_str = f"<strong>{tir}%</strong>" if desbloqueado else candado_txt
     
     html = f"""
     <!DOCTYPE html>
@@ -500,20 +528,21 @@ def compilar_informe_solar_html(desbloqueado, en_espanol=True):
 
         <h3 style="font-size:10.5pt; border-bottom: 1px solid #f59e0b; padding-bottom: 2px;">{TEXTOS['doc_sec1_title']}</h3>
         <table>
-            <tr><th width="40%">{TEXTOS['doc_th_pot_dc']}</th><td width="60%"><strong>{potencia_pico_kwp} kWp</strong> ({num_paneles} {'módulos' if en_espanol else 'modules'} 550W Tier 1)</td></tr>
+            <tr><th width="40%">{TEXTOS['doc_th_pot_dc']}</th><td width="60%"><strong>{potencia_pico_kwp} kWp</strong> ({val_paneles_str})</td></tr>
             <tr><th>{TEXTOS['doc_th_sup']}</th><td>{round(num_paneles * M2_POR_PANEL, 1)} m² ({sup_cubierta} m² {'disponibles' if en_espanol else 'available'}) - {tipo_cubierta}</td></tr>
-            <tr><th>{TEXTOS['doc_th_inv']}</th><td><strong>{potencia_inversor_kw} kW</strong> (DC/AC: 1,20)</td></tr>
+            <tr><th>{TEXTOS['doc_th_inv']}</th><td>{val_inv_str}</td></tr>
             <tr><th>{TEXTOS['doc_th_gen']}</th><td><strong>{generacion_anual_kwh:,.0f} kWh/{'año' if en_espanol else 'year'}</strong> (PR = 80%)</td></tr>
             <tr><th>{TEXTOS['doc_th_bal']}</th><td>{'Autoconsumo directo' if en_espanol else 'Self-consumption'}: {kwh_autoconsumo:,.0f} kWh | {'Excedentes compensados' if en_espanol else 'Surplus feed-in'}: {kwh_excedentes:,.0f} kWh</td></tr>
         </table>
 
-        <div style="{blur}">
+        <div style="{blur_style}">
             <h3 style="font-size:10.5pt; border-bottom: 1px solid #f59e0b; padding-bottom: 2px;">{TEXTOS['doc_sec2_title']}</h3>
             <p style="font-size:9pt;">
-                {TEXTOS['doc_capex_lbl']} <strong>{capex_total:,.2f} €</strong> (Ratio: {COSTE_WP} €/Wp).<br>
+                {TEXTOS['doc_capex_lbl']} {val_capex_str}.<br>
                 {TEXTOS['doc_ahorro_lbl']} <strong>{ahorro_anual_total:,.2f} {TEXTOS['unit_year']}</strong>.<br>
                 {TEXTOS['doc_payback_lbl']} <strong>{payback_anios} {'años' if en_espanol else 'years'}</strong>.<br>
-                {TEXTOS['doc_tir_lbl']} <strong>{tir}%</strong>.
+                {TEXTOS['doc_tir_lbl']} {val_tir_str}.<br>
+                {TEXTOS['doc_co2_lbl']} <strong>{toneladas_co2} Toneladas/año</strong>.
             </p>
 
             <div class="page-break"></div>
@@ -553,12 +582,13 @@ def compilar_informe_solar_html(desbloqueado, en_espanol=True):
     """
     return html
 
-html_solar = compilar_informe_solar_html(es_desbloqueado, es_espanol)
+html_solar = compilar_informe_solar_html(cups_valido, es_espanol)
 
 col_d1, col_d2 = st.columns([1.1, 0.9])
 with col_d1:
-    if es_desbloqueado:
-        st.success("✅ PROYECTO FOTOVOLTAICO COMPLETO DESBLOQUEADO" if es_espanol else "✅ FULL SOLAR PROJECT UNLOCKED")
+    if cups_valido:
+        txt_ok = f"✅ PROYECTO SOLAR DESBLOQUEADO (CUPS: {cups_val})" if es_espanol else f"✅ SOLAR PROJECT UNLOCKED (CUPS: {cups_val})"
+        st.success(txt_ok)
         st.download_button(
             label="📥 Descargar Memoria y Pliego de Licitación (PDF / HTML)" if es_espanol else "📥 Download Solar Design & RFP Dossier (PDF / HTML)",
             data=html_solar,
@@ -568,10 +598,16 @@ with col_d1:
             use_container_width=True
         )
         st.caption(TEXTOS['print_hint'])
+    elif tipo_lic == "pyme" and not cups_valido:
+        st.warning("⚠️ LÍMITE DE LICENCIA ALCANZADO (2/2 NAVES)" if es_espanol else "⚠️ LICENSE LIMIT REACHED (2/2 ROOFS USED)")
+        st.write(f"Naves autorizadas / Authorized facilities: `{st.session_state.cups_registrados}`.")
+        st.info("Pasa al Plan Instalador para auditar infinitas naves o adquiere un nuevo bono." if es_espanol else "Upgrade to Unlimited Contractor Plan to size unlimited facilities.")
+        st.markdown(f'<a href="{URL_STRIPE_149}" target="_blank" style="background:#7e22ce; color:white; display:block; text-align:center; padding:12px; border-radius:6px; font-weight:bold; font-size:14px; text-decoration:none; margin-bottom:8px;">{TEXTOS["plan_pro_btn"]}</a>', unsafe_allow_html=True)
+        st.markdown(f'<a href="{URL_STRIPE_49}" target="_blank" style="background:#f59e0b; color:#0f172a; display:block; text-align:center; padding:10px; border-radius:6px; font-weight:bold; font-size:13px; text-decoration:none;">{TEXTOS["plan_pyme_btn"]}</a>', unsafe_allow_html=True)
     else:
         st.warning(TEXTOS['warn_unlicensed'])
         
-        # Dos opciones de precio mostradas en paralelo
+        # Ambas opciones de precio mostradas en paralelo
         col_p1, col_p2 = st.columns(2)
         with col_p1:
             st.markdown(f"""
@@ -596,7 +632,7 @@ with col_d1:
 with col_d2:
     st.markdown(f"#### {TEXTOS['dossier_status']}")
     st.metric(TEXTOS['proj_savings'], f"{ahorro_anual_total:,.2f} {TEXTOS['unit_year']}", delta=f"{payback_anios} {'años' if es_espanol else 'years'}")
-    st.metric("Real Decreto 244/2019", TEXTOS['audit_status'], delta=TEXTOS['audit_ready'])
+    st.metric("Cumplimiento RD 244/2019", TEXTOS['audit_status'], delta=TEXTOS['audit_ready'])
 
 st.divider()
 st.markdown(f"#### {TEXTOS['preview_lbl']}")
