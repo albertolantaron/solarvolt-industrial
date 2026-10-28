@@ -23,7 +23,7 @@ When industrial facilities evaluate installing rooftop solar panels, they face t
 - **100% Strict Bilingual Support:** Full Spanish (`🇪🇸 ES`) and English (`🇬🇧 EN`) interface and official PDF reports.
 
 ## 🛠️ Tech Stack
-- **Engine:** Python 3.10+, Pandas, NumPy
+- **Engine:** Python 3.12+, Pandas, NumPy
 - **Interface:** Streamlit (Titanium SCADA Workbench)
 - **Data Visualization:** Plotly Graph Objects
 - **Billing API:** Stripe Python SDK
